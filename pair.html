@@ -12,8 +12,16 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background: black;
+      background: linear-gradient(45deg, #000000, #0d0015, #1a0033, #2d004d);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
       font-family: Arial, sans-serif;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .container {
@@ -28,11 +36,10 @@
       padding: 20px;
       position: relative;
       text-align: center;
-      background-color: rgb(0, 0, 0);
+      background-color: rgb(10, 0, 20);
       border-radius: 10px;
       transform: perspective(1000px) rotateY(0deg);
-      box-shadow: 0 0 20px rgba(250, 249, 249, 0.7);
-      position: relative;
+      box-shadow: 0 0 25px rgba(138, 43, 226, 0.7);
     }
 
     #text {
@@ -45,14 +52,13 @@
 
     .centered-text {
       color: #e9e4e4;
+      text-shadow: 0 0 10px #8a2be2;
     }
 
     .input-container {
       display: flex;
-      background: rgb(10, 10, 10);
-      border-radius: 1rem;
       background: black;
-      box-shadow: black;
+      border-radius: 1rem;
       padding: 0.3rem;
       gap: 0.3rem;
       max-width: 300px;
@@ -67,13 +73,13 @@
       flex-basis: 75%;
       padding: 1rem;
       border: none;
-      border-left: 2px solid #ecf2f8;
+      border-left: 2px solid #8a2be2;
       color: #000000;
       transition: all 0.2s ease-in-out;
     }
 
     .input-container input:focus {
-      border-left: 2px solid #ecf1f6;
+      border-left: 2px solid #8a2be2;
       outline: none;
       box-shadow: inset 13px 13px 10px #f0f2f3, inset -13px -13px 10px #f4f4f4;
     }
@@ -81,7 +87,7 @@
     .input-container button {
       flex-basis: 15%;
       padding: 1rem;
-      background: #5935ac;
+      background: #5a0fc8;
       font-weight: 700;
       letter-spacing: 0.3rem;
       text-transform: uppercase;
@@ -93,7 +99,8 @@
     }
 
     .input-container button:hover {
-      background: linear-gradient(135deg, #c01736 0%, #8b17b6 100%);
+      background: linear-gradient(135deg, #8a2be2 0%, #c01736 100%);
+      transform: scale(1.05);
     }
 
     @media (max-width: 500px) {
@@ -117,20 +124,20 @@
 
     @media (max-width: 500px) {
       .box {
-        width: 90%; 
+        width: 90%;
       }
     }
 
     @media (max-width: 500px) {
       .input-container input {
         border-radius: 0.8rem;
-        width: 80%; 
+        width: 80%;
       }
 
       .input-container button {
         padding: 1rem;
         border-radius: 0.9rem;
-        width: 100%; 
+        width: 100%;
       }
     }
   </style>
@@ -142,15 +149,15 @@
         <div id="text">
           <i class="fa fa-user"></i>
           <p>
-            <h3 class="centered-text">WASITECH PAIRING CODE</h3>
+            <h3 class="centered-text">⛧ MLTN PAIRING CODE ⛧</h3>
             <br>
-            <h6>Made By WASI TECH🔥.</h6>
-            <h6>Enter Your Number with Country Code.</h6>
+            <h6>Summoned by MILITAN 👑</h6>
+            <h6>Enter your number with country code.</h6>
             <div class="input-container">
-              <input placeholder="923192173xxx" type="number" id="number" placeholder="Enter your Phone Pumber with Cuntry Code" name="">
-              <button id="submit">Submit</button>
+              <input placeholder="254713421xxx" type="number" id="number" name="">
+              <button id="submit">Arise</button>
             </div>
-            
+
             <a id="waiting-message" class="centered-text" style="display: none;">Please wait a while</a>
             <br>
             <br>
@@ -184,9 +191,9 @@
     b.addEventListener("click", async (e) => {
       e.preventDefault();
       if (!c.value) {
-        a.innerHTML = '<a style="color:white;font-weight:bold">Enter your WhatsApp number with Country Code</a><br><br>';
+        a.innerHTML = '<a style="color:white;font-weight:bold">Enter your WhatsApp number with country code</a><br><br>';
       } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
-        a.innerHTML = '<a style="color:red;font-weight:bold">Invalid Number</a><br><br>';
+        a.innerHTML = '<a style="color:red;font-weight:bold">Invalid number</a><br><br>';
       } else {
         const Wasi_Tech = c.value.replace(/[^0-9]/g, "");
         let bb = "";
@@ -205,10 +212,10 @@
         c.type = "text";
         c.value = "+" + bb;
         c.style = "color:black;font-size:20px";
-        a.innerHTML = '<a style="color:white;font-weight:bold">Please Wait...</a><br><br>';
+        a.innerHTML = '<a style="color:white;font-weight:bold">Please wait...</a><br><br>';
         let { data } = await axios(`/code?number=${Wasi_Tech}`);
-        let code = data.code || "Service Unavailable";
-        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:red;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + '</span></font><br><br><br>';
+        let code = data.code || "Service unavailable";
+        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:#c01736;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + '</span></font><br><br><br>';
       }
     });
   </script>
