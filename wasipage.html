@@ -10,24 +10,21 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 40px 20px;
       background: linear-gradient(45deg, #000000, #0d0015, #1a0033, #2d004d);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       font-family: 'Poppins', sans-serif;
       color: #ffffff;
-      overflow: hidden;
       position: relative;
     }
 
     body::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: 
         radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.2) 0%, transparent 40%),
         radial-gradient(circle at 80% 70%, rgba(0, 255, 200, 0.15) 0%, transparent 40%);
@@ -36,96 +33,13 @@
     }
 
     @keyframes gradientBG {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    .btn {
-      --color: #8a2be2;
-      --color2: #ffffff;
-      width: 250px;
-      padding: 1em 2em;
-      background: linear-gradient(45deg, #5a0fc8, #8a2be2);
-      border-radius: 25px;
-      border: 2px solid var(--color);
-      box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      z-index: 1;
-      font-weight: 500;
-      font-size: 16px;
-      font-family: 'Poppins', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--color2);
-      margin-bottom: 20px;
-      backdrop-filter: blur(5px);
-    }
-
-    .btn::after, .btn::before {
-      content: '';
-      display: block;
-      height: 100%;
-      width: 100%;
-      transform: skew(90deg) translate(-50%, -50%);
-      position: absolute;
-      inset: 50%;
-      left: 25%;
-      z-index: -1;
-      transition: .5s ease-out;
-      background-color: var(--color);
-    }
-
-    .btn::before {
-      top: -50%;
-      left: -25%;
-      transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
-      animation: buttonPulse 2s infinite;
-    }
-
-    @keyframes buttonPulse {
-      0% {
-        transform: skew(90deg) rotate(180deg) translate(-50%, -50%) scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: skew(90deg) rotate(180deg) translate(-50%, -50%) scale(1.1);
-        opacity: 0.8;
-      }
-      100% {
-        transform: skew(90deg) rotate(180deg) translate(-50%, -50%) scale(1);
-        opacity: 1;
-      }
-    }
-
-    .btn:hover::before {
-      transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
-    }
-
-    .btn:hover::after {
-      transform: skew(45deg) translate(-50%, -50%);
-    }
-
-    .btn:hover {
-      color: var(--color2);
-    }
-
-    .btn:active {
-      filter: brightness(.7);
-      transform: scale(.98);
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .headline {
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 700;
       letter-spacing: 3px;
       text-shadow: 0 0 15px #8a2be2, 0 0 30px #8a2be2;
@@ -137,25 +51,76 @@
       letter-spacing: 3px;
       color: #b892ff;
       text-transform: uppercase;
-      margin-bottom: 24px;
+      margin-bottom: 8px;
+    }
+
+    .creator {
+      font-size: 12px;
+      color: #7a7a8c;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 560px;
+      width: 100%;
+    }
+
+    .btn {
+      padding: 1em 1.5em;
+      background: linear-gradient(90deg, #5a0fc8, #8a2be2, #5a0fc8);
+      background-size: 200% 100%;
+      background-position: left;
+      border-radius: 25px;
+      border: 2px solid #8a2be2;
+      box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+      transition: transform 0.3s ease, background-position 0.6s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .btn:hover, .btn:active {
+      transform: scale(1.08);
+      background-position: right;
+      box-shadow: 0 0 25px rgba(138, 43, 226, 0.8);
+    }
+
+    .btn.wide {
+      grid-column: span 2;
+    }
+
+    @media (max-width: 480px) {
+      .grid { grid-template-columns: 1fr; }
+      .btn.wide { grid-column: span 1; }
     }
   </style>
 </head>
 <body>
-  <div style="text-align: center; margin-bottom: 10px;">
+  <div style="text-align: center;">
     <div class="headline">⛧ MLTN MD ⛧</div>
     <div class="tagline">Arise. The Hunt Begins.</div>
-    <div style="font-weight: bold; animation: float 3s ease-in-out infinite; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); color: #7a7a8c; font-size: 12px;">Summoned by MILITAN</div>
+    <div class="creator">Summoned by MILITAN</div>
   </div>
 
-  <button onclick="window.open(`/wasiqr`)" class="btn">🔮 QR Code</button>
-  <button onclick="window.open(`/pair`)" class="btn">📜 Pair Code</button>
-  <button onclick="window.open(`https://github.com/Itxxwasi/WASI-MD-V`)" class="btn">⚔️ Bot Repo</button>
-  <button onclick="window.open(`https://github.com/wasixd/WASI-MD-PLUGINS`)" class="btn">🗡️ Plugins</button>
-  <button onclick="window.open(`https://wa.me/923192173398`)" class="btn">👑 Contact Me</button>
-  <button onclick="window.open(`https://chat.whatsapp.com/L14FfkAgFCN9eXGe5Sqjqt`)" class="btn">🌑 Wa Group</button>
-  <button onclick="window.open(`https://whatsapp.com/channel/0029VaDK8ZUDjiOhwFS1cP2j`)" class="btn">👁️ Wa Channel</button>
-  <button onclick="window.open(`https://instagram.com/itx_mee_wasi`)" class="btn">📸 Instagram</button>
-  <button onclick="window.open(`https://youtube.com/@wasitech1`)" class="btn">🎬 Youtube</button>
+  <div class="grid">
+    <button onclick="window.open(`/wasiqr`)" class="btn wide">🔮 QR Code</button>
+    <button onclick="window.open(`/pair`)" class="btn wide">📜 Pair Code</button>
+    <button onclick="window.open(`https://github.com/Itxxwasi/WASI-MD-V`)" class="btn">⚔️ Bot Repo</button>
+    <button onclick="window.open(`https://github.com/wasixd/WASI-MD-PLUGINS`)" class="btn">🗡️ Plugins</button>
+    <button onclick="window.open(`https://wa.me/923192173398`)" class="btn">👑 Contact Me</button>
+    <button onclick="window.open(`https://chat.whatsapp.com/L14FfkAgFCN9eXGe5Sqjqt`)" class="btn">🌑 Wa Group</button>
+    <button onclick="window.open(`https://whatsapp.com/channel/0029VaDK8ZUDjiOhwFS1cP2j`)" class="btn">👁️ Wa Channel</button>
+    <button onclick="window.open(`https://instagram.com/itx_mee_wasi`)" class="btn">📸 Instagram</button>
+    <button onclick="window.open(`https://youtube.com/@wasitech1`)" class="btn">🎬 Youtube</button>
+  </div>
 </body>
 </html>
